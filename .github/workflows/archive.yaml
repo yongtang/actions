@@ -1,0 +1,19 @@
+---
+name: Archive
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 12 * * *
+jobs:
+  save:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          repository: yongtang/archive
+          token: ${{ secrets.TOKEN_ARCHIVE }}
+      - run: bash .github/workflows/action.sh
+        env:
+          GH_REPO: yongtang/archive
+          GH_TOKEN: ${{ secrets.TOKEN_ARCHIVE }}
+          GH_THETA: ${{ secrets.TOKEN_THETA }}
