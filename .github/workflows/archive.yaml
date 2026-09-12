@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: 0 12 * * *
 jobs:
-  save:
+  archive:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -17,5 +17,15 @@ jobs:
           GH_REPO: yongtang/archive
           GH_TOKEN: ${{ secrets.TOKEN_ARCHIVE }}
           GH_THETA: ${{ secrets.TOKEN_THETA }}
+
+  cloudflare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          repository: yongtang/archive
+          token: ${{ secrets.TOKEN_ARCHIVE }}
+      - run: npx --yes wrangler@latest deploy --config .cloudflare/wrangler.jsonc
+        env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
