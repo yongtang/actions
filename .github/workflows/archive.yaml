@@ -17,3 +17,5 @@ jobs:
           GH_REPO: yongtang/archive
           GH_TOKEN: ${{ secrets.TOKEN_ARCHIVE }}
           GH_THETA: ${{ secrets.TOKEN_THETA }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
